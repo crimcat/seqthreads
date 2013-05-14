@@ -12,8 +12,8 @@ private:
     const char *name_;
     sem_t *id_;
 public:
-    a_semaphore(const char *name, unsigned int value)
-        : name_(name), id_(sem_open(name, O_CREAT, S_IRWXU, value)) {
+    a_semaphore(const char *name)
+        : name_(name), id_(sem_open(name, O_CREAT, S_IRWXU, 1)) {
         if(SEM_FAILED != id_) {
             int v = -1;
             if(!sem_getvalue(id_, &v) && !v) {
@@ -52,13 +52,13 @@ public:
 
 static a_semaphore &
 sem1() {
-    static a_semaphore s1("sem1", 1);
+    static a_semaphore s1("sem1");
     return s1;
 }
 
 static a_semaphore &
 sem2() {
-    static a_semaphore s2("sem2", 1);
+    static a_semaphore s2("sem2");
     return s2;
 }
 
