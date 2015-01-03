@@ -1,3 +1,5 @@
+/** seqthreads.cc
+ */
 
 #include <pthread.h>
 #include <semaphore.h>
